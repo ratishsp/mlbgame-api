@@ -273,11 +273,19 @@ class GameBoxScore(object):
             # possible error when 9th innning home team has 'x'
             # becuase they did not bat
             except ValueError:
-                result = {
-                    'inning': int(x),
-                    'home': data[x]['home'],
-                    'away': int(data[x]['away'])
-                }
+                try:
+                    result = {
+                        'inning': int(x),
+                        'home': data[x]['home'],
+                        'away': int(data[x]['away'])
+                    }
+                except ValueError:
+                    print 'shortened'
+                    result = {
+                        'inning': int(x),
+                        'home': data[x]['home'],
+                        'away': data[x]['away']
+                    }
             self.innings.append(result)
 
     def __iter__(self):
