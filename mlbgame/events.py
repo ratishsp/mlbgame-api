@@ -15,7 +15,7 @@ def __inning_info(inning, part):
     info = []
     # loop through the half
     half = inning.findall(part)[0]
-    for y in half.findall('atbat'):
+    for y in half.xpath('./atbat|./action'):
         atbat = {}
         # loop through and save info
         for i in y.attrib:
